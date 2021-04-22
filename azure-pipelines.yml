@@ -18,7 +18,7 @@ variables:
 steps:
   - task: CmdLine@2
     inputs:
-    script: 'mkdir d:\a\1\MobEAD'
+      script: 'mkdir d:\a\1\MobEAD'
 
   - task: NuGetToolInstaller@1
 
@@ -28,22 +28,22 @@ steps:
     restoreSolution: '$(solution)'
   - task: VSBuild@1
     inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+      solution: '$(solution)'
+      msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+      platform: '$(buildPlatform)'
+      configuration: '$(buildConfiguration)'
 
   - task: VSTest@2
     inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+      platform: '$(buildPlatform)'
+      configuration: '$(buildConfiguration)'
 
   - task: CopyFiles@2
     inputs:
-    Contents: '**/*.*'
-    TargetFolder: $(build.artifactStagingDirectory)
+      Contents: '**/*.*'
+      TargetFolder: $(build.artifactStagingDirectory)
 
   - task: PublishBuildArtifacts@1
     inputs:
-    ArtifactName: 'MobEAD'
-    PathtoPublish: 'd:\a\1\a'
+      ArtifactName: 'MobEAD'
+      PathtoPublish: 'd:\a\1\a'
